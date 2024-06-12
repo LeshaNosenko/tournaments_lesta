@@ -285,12 +285,12 @@
     </style>
 </head>
 <body>
+	<span class="ccw-word" data-type="user_wot__ru">Имя_пользователя</span>
     <div class="widget" id="widget">
 		<select id="tournamentSelect" onchange="loadTournamentResults(this.value)">
 		<option value="" selected disabled hidden>Выберите турнир</option>
 		</select>
-        <h2><img src="https://rt-static.rt.ru/sites/default/files/rti_lazy_files/Igrovoj%20zachet_baner_28052024__webp.webp" alt="Icon">
-		Игровой вызов - Первый турнир - Результаты. Данные обновляются каждые 5 секунд.
+        <h2>
 		</h2>
         <div id="loader" class="loader"></div>
         <div id="content" style="display: none;">
@@ -384,7 +384,11 @@
 		
 		function updateTournamentTitle(tournamentName) {
 			const tournamentTitle = document.querySelector('.widget h2');
-			tournamentTitle.textContent = `${tournamentName} Результаты. Данные обновляются каждые 5 секунд.`;
+			if (tournamentName === 'Выберите турнир') {
+				tournamentTitle.textContent = tournamentName;
+			} else {
+				tournamentTitle.textContent = `Результаты по турниру: ${tournamentName}. Данные обновляются каждые 5 секунд.`;
+			}
 		}
 
 		async function loadTournamentResults(tournamentId) {
