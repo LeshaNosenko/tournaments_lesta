@@ -413,7 +413,6 @@
 				}
 
 				const responseData = await response.json();
-				console.log('Fetched data:', responseData);
 
 				let players = responseData.data.participants;
 				
@@ -469,7 +468,6 @@
 						
 						const prizeDescription = getPlayerPrize(player.position);
 						
-						console.log(prizeDescription);
 						
 						const percent_wins = isNaN(player.results.wins / player.results.battles) ? '0%' : Math.round((player.results.wins / player.results.battles) * 100) + '%';
 						tr.innerHTML = `
