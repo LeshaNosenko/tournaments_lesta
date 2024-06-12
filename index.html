@@ -313,6 +313,18 @@
             </div>
 			<h3 class="Participants_title__+IYed">
 			<div>
+				<span>Дата начала турнира:</span>
+				<span class="tournamentdescription" id="created_at">0</span>
+			</div>
+			<div>
+				<span>Дата окончания турнира:</span>
+				<span class="tournamentfinished_at" id="finished_at">0</span>
+			</div>
+			<div>
+				<span>Описание турнира:</span>
+				<span class="tournamentdescription" id="description">0</span>
+			</div>
+			<div>
 				<span>Участники:</span>
 				<span class="Participants_title_count__Q6wmU" id="participantsCount">0</span>
 			</div>
@@ -438,6 +450,19 @@
 					document.getElementById('loadMoreBtn2').disabled = false;
 				}
 				
+				const tournamentCreatedAt = new Date(responseData.data.created_at);
+				const formattedDateCreated_at = tournamentCreatedAt.toLocaleDateString('ru-RU');
+				const formattedTimeCreated_at = tournamentCreatedAt.toLocaleTimeString('ru-RU');
+				const formattedDateTimeCreated_at = `${formattedDateCreated_at} ${formattedTimeCreated_at}`;
+				
+				const tournamentFinishedAt = new Date(responseData.data.finished_at);
+				const formattedDateFinished_at = tournamentFinishedAt.toLocaleDateString('ru-RU');
+				const formattedTimeFinished_at = tournamentFinishedAt.toLocaleTimeString('ru-RU');
+				const formattedDateTimeFinished_at = `${formattedDateFinished_at} ${formattedTimeFinished_at}`;
+				
+				document.getElementById('created_at').innerText = formattedDateTimeCreated_at;
+				document.getElementById('finished_at').innerText = formattedDateTimeFinished_at;
+				document.getElementById('description').innerText = responseData.data.description;
 				document.getElementById('participantsCount').innerText = responseData.data.participants_count;
 
 				if (players && Array.isArray(players)) {
