@@ -122,6 +122,7 @@
 		}
 
 		.loader {
+			display: none;
 			font-size: 50px;
 			border: 4px solid #f3f3f3;
 			border-radius: 50%;
@@ -280,16 +281,24 @@
 		
 		#tournamentSelect {
 			font-size: 18px;
+
 		}
+		
+		#tournamentSelectWrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 		
     </style>
 </head>
 <body>
-	<span class="ccw-word" data-type="user_wot__ru">Имя_пользователя</span>
     <div class="widget" id="widget">
-		<select id="tournamentSelect" onchange="loadTournamentResults(this.value)">
-		<option value="" selected disabled hidden>Выберите турнир</option>
-		</select>
+		<div id="tournamentSelectWrapper">
+            <select id="tournamentSelect" onchange="loadTournamentResults(this.value)">
+                <option value="" selected disabled hidden>Выберите турнир</option>
+            </select>
+        </div>
         <h2>
 		</h2>
         <div id="loader" class="loader"></div>
@@ -385,7 +394,7 @@
 		function updateTournamentTitle(tournamentName) {
 			const tournamentTitle = document.querySelector('.widget h2');
 			if (tournamentName === 'Выберите турнир') {
-				tournamentTitle.textContent = tournamentName;
+				tournamentTitle.textContent = '';
 			} else {
 				tournamentTitle.textContent = `Результаты по турниру: ${tournamentName}. Данные обновляются каждые 5 секунд.`;
 			}
