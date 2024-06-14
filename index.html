@@ -428,10 +428,9 @@
 		}
 		
 		async function fetchData(offset, limit, clearTable = true, tournamentId) {
-			const url = `https://challenge.tanki.su/api/v1/tournaments/${tournamentId}?offset=${offset}&limit=${limit}&langru&column=rating`;
 
 			try {
-				const response = await fetch(url);
+				const response = await fetch(`/api/tournament/${tournamentId}`);
 
 				if (!response.ok) {
 					throw new Error('Произошла ошибка загрузки турнира, скорее всего турнир закончился ' + response.statusText);
@@ -566,6 +565,7 @@
 				}
 			} catch (error) {
 				document.getElementById('loader').textContent = 'Турнир отсутствует';
+				alert('Турнир отсутствует');
 				console.error('Ошибка загрузки данных: ', error);
 			}
 		}
