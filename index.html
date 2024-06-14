@@ -430,7 +430,7 @@
 		async function fetchData(offset, limit, clearTable = true, tournamentId) {
 
 			try {
-				const response = await fetch(`/api/tournament/${tournamentId}`);
+				const response = await fetch(`https://challenge.tanki.su/api/v1/tournaments/${tournamentId}?offset=${offset}&limit=${limit}&langru&column=rating`);
 
 				if (!response.ok) {
 					throw new Error('Произошла ошибка загрузки турнира, скорее всего турнир закончился ' + response.statusText);
