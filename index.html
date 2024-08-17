@@ -381,7 +381,18 @@
 				}
 
 				const data = await response.json();
-				data.data.forEach(tournament => {
+				let tournaments = data.data;
+
+				
+				const tournament708 = tournaments.find(tournament => tournament.id === 708);
+				tournaments = tournaments.filter(tournament => tournament.id !== 708);
+
+				
+				if (tournament708) {
+					tournaments.unshift(tournament708);
+				}
+
+				tournaments.forEach(tournament => {
 					const option = document.createElement('option');
 					option.value = tournament.id;
 					option.textContent = tournament.name;
