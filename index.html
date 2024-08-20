@@ -507,22 +507,38 @@
 						let total = '';
 
 						if (tournamentId === '708') {
-							const bestSeries = player.results.best_series;
-							history = bestSeries.map((entry, index) => {
-								return `Килы: ${entry.kills}, 
-								Очки: ${entry.score}, 
-								Урон: ${entry.damage},
-								Позиция: ${entry.position}`;
-							}).join('<br>');
-							maxBattle = '';
-							total = 'Всего очков: ' + player.results.best_total + '<br> Сумма урона: ' + player.results.best_total_damage + '<br> Сумма килов: ' + player.results.best_total_kills +'<br>';
-							console.log(maxBattle);
-						} else {
-							history = player.results.history.join(', ');
-							maxBattle = player.results.max;
-							total = player.results.total;
-							console.log(maxBattle);
-						}
+        const bestSeries = player.results.best_series;
+        history = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>№ боя</th>
+						<th>Позиция</th>
+                        <th>Килы</th>
+                        <th>Очки</th>
+                        <th>Урон</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${bestSeries.slice(0, 10).map((entry, index) => `
+                        <tr>
+                            <td>${index + 1}</td>
+							<td>${entry.position}</td>
+                            <td>${entry.kills}</td>
+                            <td>${entry.score}</td>
+                            <td>${entry.damage}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+        maxBattle = '';
+        total = `Всего очков: ${player.results.best_total}<br> Сумма урона: ${player.results.best_total_damage}<br> Сумма килов: ${player.results.best_total_kills}<br>`;
+    } else {
+        history = player.results.history.join(', ');
+        maxBattle = player.results.max;
+        total = player.results.total;
+    }
 						
 						function getPlayerPrize(position) {
 						  const prizes = responseData.data.prizes_ranges;
