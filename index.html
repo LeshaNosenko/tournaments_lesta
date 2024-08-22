@@ -514,6 +514,7 @@
                     <tr>
                         <th>№ боя</th>
 						<th>Позиция</th>
+						<th>Танк</th>
                         <th>Килы</th>
                         <th>Очки</th>
                         <th>Урон</th>
@@ -524,6 +525,7 @@
                         <tr>
                             <td>${index + 1}</td>
 							<td>${entry.position}</td>
+							<td>${get_tank_name(entry.vehicle_type_cd)}</td>
                             <td>${entry.kills}</td>
                             <td>${entry.score}</td>
                             <td>${entry.damage}</td>
@@ -539,6 +541,23 @@
         maxBattle = player.results.max;
         total = player.results.total;
     }
+	
+						function get_tank_name(tank_id) {
+						let tank_name;
+
+						if (tank_id == 13377) {
+							tank_name = 'Arlequin';
+						} 
+						else if (tank_id == 5777) {
+							tank_name = 'Huragan';
+						} 
+						else {
+							tank_name = 'Неизвестен';
+						}
+						
+						return tank_name;
+					}
+	
 						
 						function getPlayerPrize(position) {
 						  const prizes = responseData.data.prizes_ranges;
